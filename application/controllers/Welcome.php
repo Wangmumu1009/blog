@@ -25,6 +25,18 @@ class Welcome extends CI_Controller {
     public function login(){
         $this->load->view('login');
     }
+
+    public function check_login(){
+        $email = $this->input->get('email');
+        $pwd = $this->input->get('pwd');
+        $user = $this->User_model->save($email,$pwd);
+
+        if ($user){
+            $this->session->set_userdata('user',$user);
+        }
+
+        $this->load->view('index_logined');
+    }
     public function save(){
         $email = $this->input->get('email');
         $name = $this->input->get('name');
@@ -47,6 +59,12 @@ class Welcome extends CI_Controller {
         }
 
 
+    }
+
+    public function logout(){
+
+        $this->load->view('login');
+        $this->session->unset_userdata('user');
     }
 
     public function captcha(){
