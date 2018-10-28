@@ -31,7 +31,7 @@ class User_model extends CI_Model
 
     public function check_login($email,$pwd){
         $query = $this->db->get_where('t_user',array(
-            'emaml'=>$email,
+            'email'=>$email,
             'password'=>$pwd
         ));
 
